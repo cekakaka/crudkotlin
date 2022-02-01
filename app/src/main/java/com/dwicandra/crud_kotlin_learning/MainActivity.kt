@@ -25,7 +25,11 @@ import com.google.firebase.database.*
 class MainActivity : AppCompatActivity(){
     lateinit var fab:FloatingActionButton
 
-    lateinit var mRecyclerView: RecyclerView
+    private lateinit var daoEmployess: DAOEmployess
+  //  lateinit var adapterEmployes: AdapterEmployes
+    private lateinit var db : DatabaseReference
+    private var listEmployes = ArrayList<Employes>()
+    private lateinit var mRecyclerView : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +37,9 @@ class MainActivity : AppCompatActivity(){
         fab = findViewById(R.id.feb)
         fab.setOnClickListener(listener)
 
-
-        recycleViewData()
+        mRecyclerView = findViewById(R.id.list_employes)
+        mRecyclerView.layoutManager =LinearLayoutManager(this)
+        getDataListEmployes()
 
     }
     val listener = View.OnClickListener { view ->
@@ -45,11 +50,26 @@ class MainActivity : AppCompatActivity(){
             }
         }
     }
-    fun recycleViewData(){
-        mRecyclerView = findViewById(R.id.list_employes)
-        mRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        val empList : ArrayList<Employes> = ArrayList()
-        mRecyclerView.adapter = AdapterEmployes(empList)
+
+    fun getDataListEmployes(){
+
+        daoEmployess = DAOEmployess()
+        db = daoEmployess.firebaseConfig()
+
+        db.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+//                listEmployes.clear()
+                daoEmployess.showData(listEmployes,snapshot)
+                mRecyclerView.adapter = AdapterEmployes(this@MainActivity,listEmployes)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
     }
+
+
+
 }
 

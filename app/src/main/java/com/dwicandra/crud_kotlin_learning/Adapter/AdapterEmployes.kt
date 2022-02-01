@@ -13,7 +13,7 @@ import com.dwicandra.crud_kotlin_learning.R
 import org.w3c.dom.Text
 
 
-class AdapterEmployes(val datalist: ArrayList<Employes>): RecyclerView.Adapter<AdapterEmployes.EmployesViewHolder>(){
+class AdapterEmployes(val ctx : Context, val datalist: ArrayList<Employes>): RecyclerView.Adapter<AdapterEmployes.EmployesViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployesViewHolder {
         val layoutInflater : LayoutInflater = LayoutInflater.from(parent.context)
