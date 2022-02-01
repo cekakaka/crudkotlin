@@ -24,24 +24,17 @@ import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity(){
     lateinit var fab:FloatingActionButton
-    lateinit var mRecyclerView: RecyclerView
-    lateinit var adapterEmployes: AdapterEmployes
 
-    var arrayListEmployes : ArrayList<Employes>? = null
+    lateinit var mRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         fab = findViewById(R.id.feb)
         fab.setOnClickListener(listener)
-        addData()
 
-        mRecyclerView = findViewById(R.id.list_employes)
-        adapterEmployes = AdapterEmployes(arrayListEmployes)
-//        val layoutManager : RecyclerView.LayoutManager = LinearLayoutManager(this)
-        mRecyclerView.layoutManager =  LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        mRecyclerView.adapter = adapterEmployes
 
+        recycleViewData()
 
     }
     val listener = View.OnClickListener { view ->
@@ -52,9 +45,11 @@ class MainActivity : AppCompatActivity(){
             }
         }
     }
-    fun addData(){
-        arrayListEmployes?.add(Employes("","hello",1))
+    fun recycleViewData(){
+        mRecyclerView = findViewById(R.id.list_employes)
+        mRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        val empList : ArrayList<Employes> = ArrayList()
+        mRecyclerView.adapter = AdapterEmployes(empList)
     }
-
 }
 

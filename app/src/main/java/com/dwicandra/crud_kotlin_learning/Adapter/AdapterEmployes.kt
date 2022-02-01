@@ -13,8 +13,7 @@ import com.dwicandra.crud_kotlin_learning.R
 import org.w3c.dom.Text
 
 
-class AdapterEmployes(datalist: ArrayList<Employes>?): RecyclerView.Adapter<AdapterEmployes.EmployesViewHolder>(){
-    private val datalist : ArrayList<Employes>?
+class AdapterEmployes(val datalist: ArrayList<Employes>): RecyclerView.Adapter<AdapterEmployes.EmployesViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployesViewHolder {
         val layoutInflater : LayoutInflater = LayoutInflater.from(parent.context)
@@ -23,26 +22,23 @@ class AdapterEmployes(datalist: ArrayList<Employes>?): RecyclerView.Adapter<Adap
     }
 
     override fun onBindViewHolder(holder: EmployesViewHolder, position: Int) {
-        holder.tvNama.setText(datalist!![position].name)
-        holder.tvKelas.setText(datalist[position].kelas)
+        val datalists = datalist[position]
+        holder.tvId.text = datalists.id
+        holder.tvNama.text = datalists.name
+        holder.tvKelas.text = datalists.kelas.toString()
+//        holder.tvNama.setText(datalist!![position].name)
+//        holder.tvKelas.setText(datalist[position].kelas)
     }
 
     override fun getItemCount(): Int {
-        return if(datalist != null) datalist.size else 0
+        return datalist.size
     }
 
-    inner class EmployesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        var tvNama: TextView
-        val tvKelas: TextView
+    class EmployesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        var tvId = itemView.findViewById<TextView>(R.id.tv_id)
+        var tvNama = itemView.findViewById<TextView>(R.id.tv_nama)
+        val tvKelas = itemView.findViewById<TextView>(R.id.tv_kelas)
 
-        init {
-            tvNama = itemView.findViewById(R.id.tv_nama) as TextView
-            tvKelas = itemView.findViewById(R.id.tv_kelas) as TextView
-        }
-    }
-
-    init {
-        this.datalist = datalist
     }
 
 }
