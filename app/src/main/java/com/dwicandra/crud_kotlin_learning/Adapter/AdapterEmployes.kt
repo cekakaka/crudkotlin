@@ -25,7 +25,7 @@ class AdapterEmployes(val ctx : Context, val datalist: ArrayList<Employes>): Rec
         val datalists = datalist[position]
         holder.tvId.text = datalists.id
         holder.tvNama.text = datalists.name
-        holder.tvKelas.text = datalists.kelas.toString()
+        holder.tvKelas.text = datalists.kelas
 //        holder.tvNama.setText(datalist!![position].name)
 //        holder.tvKelas.setText(datalist[position].kelas)
     }
@@ -34,7 +34,7 @@ class AdapterEmployes(val ctx : Context, val datalist: ArrayList<Employes>): Rec
         return datalist.size
     }
 
-    class EmployesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class EmployesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var tvId = itemView.findViewById<TextView>(R.id.tv_id)
         var tvNama = itemView.findViewById<TextView>(R.id.tv_nama)
         val tvKelas = itemView.findViewById<TextView>(R.id.tv_kelas)

@@ -8,8 +8,6 @@ import android.widget.EditText
 import android.widget.Toast
 import com.dwicandra.crud_kotlin_learning.DAO.DAOEmployess
 import com.dwicandra.crud_kotlin_learning.Model.Employes
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 
 class InputActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var etNama: EditText
@@ -32,13 +30,16 @@ class InputActivity : AppCompatActivity(), View.OnClickListener {
 
     fun saveData(){
         val nama = etNama.text.toString().trim()
-        val kelas = etKelas.text.toString().toInt()
-        if(nama.isEmpty() || kelas.toString().isEmpty()){
+        val kelas = etKelas.text.toString().trim()
+        if(nama.isEmpty()){
             etNama.error = "isi nama"
+            return
+        }
+        if(kelas.isEmpty()){
             etKelas.error = "Isi Kelas"
             return
         }
-        val employesId = dao.myRef.push().key
+        val employesId = dao.firebaseConfig().push().key
         val emp = Employes(employesId,nama,kelas)
         dao.addEmployess(emp)
         if(dao != null){

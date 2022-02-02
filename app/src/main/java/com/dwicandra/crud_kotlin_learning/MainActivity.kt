@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity(){
 
         mRecyclerView = findViewById(R.id.list_employes)
         mRecyclerView.layoutManager =LinearLayoutManager(this)
+        mRecyclerView.setHasFixedSize(true)
         getDataListEmployes()
 
     }
@@ -58,13 +60,15 @@ class MainActivity : AppCompatActivity(){
 
         db.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-//                listEmployes.clear()
+                listEmployes.clear()
                 daoEmployess.showData(listEmployes,snapshot)
-                mRecyclerView.adapter = AdapterEmployes(this@MainActivity,listEmployes)
+                if(listEmployes.isNotEmpty()) {
+                    mRecyclerView.adapter = AdapterEmployes(this@MainActivity, listEmployes)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Toast.makeText(this@MainActivity,"$error", Toast.LENGTH_LONG).show()
             }
         })
     }
