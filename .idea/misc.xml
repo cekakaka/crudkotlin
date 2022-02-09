@@ -6,8 +6,9 @@
         <entry key="..\:/AndroidProject/Kotlin/app/src/main/res/drawable/card_data.xml" value="0.240625" />
         <entry key="..\:/AndroidProject/Kotlin/app/src/main/res/layout/activity_input.xml" value="0.25" />
         <entry key="..\:/AndroidProject/Kotlin/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/AndroidProject/Kotlin/app/src/main/res/layout/card_view.xml" value="0.14990942028985507" />
+        <entry key="..\:/AndroidProject/Kotlin/app/src/main/res/layout/card_view.xml" value="0.25" />
         <entry key="..\:/AndroidProject/Kotlin/app/src/main/res/layout/cardlist.xml" value="1.0" />
+        <entry key="..\:/AndroidProject/Kotlin/app/src/main/res/layout/update_data.xml" value="0.22" />
         <entry key="..\:/AndroidProject/Kotlin/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.240625" />
       </map>
     </option>

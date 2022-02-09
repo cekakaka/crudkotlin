@@ -46,8 +46,8 @@ class MainActivity : AppCompatActivity(){
     }
     val listener = View.OnClickListener { view ->
         when(view.id){
-            R.id.feb ->{
-                val intent = Intent(this@MainActivity,InputActivity::class.java )
+            R.id.feb -> {
+                val intent = Intent(this@MainActivity, InputActivity::class.java)
                 startActivity(intent)
             }
         }
